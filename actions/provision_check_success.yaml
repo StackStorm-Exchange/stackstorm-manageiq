@@ -1,0 +1,24 @@
+---
+description: Check if a given provision request is complete and return the new VM ID
+enabled: true
+name: provision_check_success
+runner_type: "python-script"
+entry_point: lib/provision_check_success.py
+parameters:
+  operation:
+    type: string
+    default: provision_check_success
+    immutable: true
+  password:
+    type: string
+    required: true
+  server:
+    type: string
+    required: true
+  username:
+    type: string
+    required: true
+  request_id:
+    type: string
+    description: "The Provision Request ID from ManageIQ"
+    required: true

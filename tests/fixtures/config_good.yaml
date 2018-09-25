@@ -1,0 +1,12 @@
+---
+manageiq:
+  base:
+    endpoint: abc
+    username: Administrator
+    password: PassworD!
+  full:
+    endpoint: abc
+    username: Administrator
+    password: PassworD!
+    port: 1234
+    transport: https

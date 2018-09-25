@@ -1,0 +1,21 @@
+---
+description: "Gets all VMs that are not archived or orphaned."
+enabled: true
+name: vm_all_get
+pack: manageiq
+runner_type: "python-script"
+entry_point: lib/vm_all_get.py
+parameters:
+  server:
+    type: string
+    description: "Hostname or IP address of the ManageIQ Server"
+    default: "{{ st2kv.system.cmp.server }}"
+  username:
+    type: string
+    description: "Username to login as on the ManageIQ Server"
+    default: "{{ st2kv.system.cmp.username }}"
+  password:
+    type: string
+    description: "Password for username on the ManageIQ Server"
+    default: "{{ st2kv.system.cmp.password | decrypt_kv }}"
+    secret: true

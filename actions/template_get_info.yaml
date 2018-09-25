@@ -1,0 +1,24 @@
+---
+description: Get the Operating System and template name from the MIQ template
+enabled: true
+name: template_get_info
+runner_type: "python-script"
+entry_point: lib/template_get_info.py
+parameters:
+  operation:
+    type: string
+    default: tmpl_get_info
+    immutable: true
+  password:
+    type: string
+    required: true
+  server:
+    type: string
+    required: true
+  username:
+    type: string
+    required: true
+  template_id:
+    type: string
+    description: "The Templae ID from ManageIQ"
+    required: true

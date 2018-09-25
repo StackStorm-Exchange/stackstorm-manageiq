@@ -1,2 +1,16 @@
-# stackstorm-manageiq
-StackStorm integration pack for ManageIQ
+# manageiq Integration Pack
+
+## Configuration
+TODO: Describe configuration
+
+
+# Sensors
+
+## Example Sensor
+TODO: Describe sensor
+
+
+# Actions
+
+## example
+TODO: Describe action

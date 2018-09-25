@@ -1,0 +1,39 @@
+---
+description: "Deletes custom attributes on a VM"
+enabled: true
+name: vm_custom_attributes_delete
+pack: manageiq
+runner_type: "python-script"
+entry_point: lib/vm_custom_attributes.py
+parameters:
+  operation:
+    type: string
+    default: delete
+    immutable: true
+  server:
+    type: string
+    description: "Hostname or IP address of the ManageIQ Server"
+    required: true
+  username:
+    type: string
+    description: "Username to login as on the ManageIQ Server"
+    required: true
+  password:
+    type: string
+    description: "Password for username on the ManageIQ Server"
+    required: true
+    secret: true
+  id:
+    type: string
+    description: "ID of the VM to retrieve custom attributes on for (ex: 100000123)"
+    required: true
+  custom_attributes:
+    type: array
+    items:
+      type: object
+    description: >
+      'Array of custom attributes objects to be set. Each object
+       should have the following schema:
+       - key: string'
+    required: true
+

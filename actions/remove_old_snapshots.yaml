@@ -1,0 +1,33 @@
+---
+description: "Removes any snapshots older than the specified age"
+enabled: true
+name: remove_old_snapshots
+pack: manageiq
+runner_type: "python-script"
+entry_point: lib/remove_old_snapshots.py
+parameters:
+  server:
+    type: string
+    description: "Hostname or IP address of the ManageIQ Server"
+    immutable: false
+    default: "{{ st2kv.system.cmp.server }}"
+  username:
+    type: string
+    description: "Username to login as on the ManageIQ Server"
+    immutable: false
+    default: "{{ st2kv.system.cmp.username }}"
+  password:
+    type: string
+    description: "Password for username on the ManageIQ Server"
+    immutable: false
+    default: "{{ st2kv.system.cmp.password | decrypt_kv }}"
+    secret: true
+  name_ignore_regexes:
+    type: array
+    description: "Compares the snapshot name to the regex. If matched, the snapshot will be ignored and NOT deleted"
+    default: "{{ st2kv.system.snapshot.name_ignore_regexes }}"
+  max_age_days:
+    type: integer
+    description: "Number of days that a snapshot will exist before getting deleted"
+    default: "{{ st2kv.system.snapshot.max_age_days }}"
+    required: true
