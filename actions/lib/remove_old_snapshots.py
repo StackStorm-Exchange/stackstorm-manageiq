@@ -4,13 +4,17 @@ import datetime
 import dateutil.parser
 import re
 import requests
-import urllib3
 
 from st2common.runners.base_action import Action
 
 # silence SSL warnings
-urllib3.disable_warnings()
 requests.packages.urllib3.disable_warnings()  # pylint: disable=no-member
+
+try:
+    import urllib3
+    urllib3.disable_warnings()
+except ImportError:
+    pass
 
 
 class RemoveOldSnapshots(Action):
