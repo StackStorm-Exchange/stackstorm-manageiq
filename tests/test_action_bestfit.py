@@ -145,7 +145,7 @@ class BestFitTestCase(ManageIQBaseActionTestCase):
         hosts = []
         kwargs = {'clusterName': None}
         with self.assertRaises(ValueError):
-            result = action._check_hosts(client, hosts, kwargs)
+            action._check_hosts(client, hosts, kwargs)
 
     def test_check_hosts_empty_hosts_fails(self):
         action = self.get_action_instance({})
