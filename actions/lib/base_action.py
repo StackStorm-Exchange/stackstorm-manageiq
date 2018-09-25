@@ -6,13 +6,13 @@ from manageiq_client.filters import Q
 try:
     import requests
     requests.packages.urllib3.disable_warnings()  # pylint: disable=no-member
-except:
+except ImportError:
     pass
 
 try:
     import urllib3
     urllib3.disable_warnings()
-except:
+except ImportError:
     pass
 
 
