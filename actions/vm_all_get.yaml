@@ -9,13 +9,13 @@ parameters:
   server:
     type: string
     description: "Hostname or IP address of the ManageIQ Server"
-    default: "{{ st2kv.system.cmp.server }}"
+    required: true
   username:
     type: string
     description: "Username to login as on the ManageIQ Server"
-    default: "{{ st2kv.system.cmp.username }}"
+    required: true
   password:
     type: string
     description: "Password for username on the ManageIQ Server"
-    default: "{{ st2kv.system.cmp.password | decrypt_kv }}"
+    required: true
     secret: true

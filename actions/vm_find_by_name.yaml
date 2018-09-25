@@ -1,5 +1,5 @@
 ---
-description: "Finds a VM by name"
+description: "Finds a VM by name Finds a VM by name"
 enabled: true
 name: vm_find_by_name
 pack: manageiq
