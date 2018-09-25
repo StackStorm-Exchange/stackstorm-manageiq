@@ -1,0 +1,47 @@
+---
+description: "Delets a set of tags (and categories) in ManageIQ"
+enabled: true
+name: tags_delete
+pack: manageiq
+runner_type: "python-script"
+entry_point: lib/tags.py
+parameters:
+  operation:
+    type: string
+    default: delete
+    immutable: true
+  server:
+    type: string
+    description: "Hostname or IP address of the ManageIQ Server"
+    required: true
+  username:
+    type: string
+    description: "Username to login as on the ManageIQ Server"
+    required: true
+  password:
+    type: string
+    description: "Password for username on the ManageIQ Server"
+    required: true
+    secret: true
+  delete_keys:
+    type: boolean
+    description: "Globally sets the 'key_delete' option for all tags. This will delete each tags key/category. The 'delete_value' option is set in the 'tags' array overrides this value."
+    required: false
+    default: false
+  delete_values:
+    type: boolean
+    description: "Globally sets the 'value_delete' option for all tags. This will delete each tag's value. The 'delete_value' option is set in the 'tags' array overrides this value."
+    required: false
+    default: true
+  tags:
+    type: array
+    items:
+      type: object
+    description: >
+      'Array of tag objects to be created. Each tag object
+       should have the following schema:
+       - key: string
+         value: string
+         delete_key: boolean (optional, default = false)
+         delete_value: boolean (optional, default = true)'
+    required: true

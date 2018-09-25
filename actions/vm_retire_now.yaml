@@ -1,0 +1,28 @@
+---
+description: Retire a VM with a given ID
+enabled: true
+name: vm_retire_now
+runner_type: "python-script"
+entry_point: lib/vm_retire_now.py
+parameters:
+  action:
+    type: string
+    default: "retire now"
+    required: true
+  operation:
+    type: string
+    default: retire_now
+    immutable: true
+  password:
+    type: string
+    required: true
+  server:
+    type: string
+    required: true
+  username:
+    type: string
+    required: true
+  id:
+    type: string
+    description: "ID of the VM in the Cloud Managemnt Platform"
+    required: true

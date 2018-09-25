@@ -1,0 +1,37 @@
+---
+description: "Creates a set of tags in ManageIQ"
+enabled: true
+name: tags_create
+pack: manageiq
+runner_type: "python-script"
+entry_point: lib/tags.py
+parameters:
+  operation:
+    type: string
+    default: create
+    immutable: true
+  server:
+    type: string
+    description: "Hostname or IP address of the ManageIQ Server"
+    required: true
+  username:
+    type: string
+    description: "Username to login as on the ManageIQ Server"
+    required: true
+  password:
+    type: string
+    description: "Password for username on the ManageIQ Server"
+    required: true
+    secret: true
+  tags:
+    type: array
+    items:
+      type: object
+    description: >
+      'Array of tag objects to be created. Each tag object
+       should have the following schema:
+       - key: string
+         value: string
+         key_description: string
+         value_description: string'
+    required: true

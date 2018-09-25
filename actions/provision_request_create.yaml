@@ -1,0 +1,107 @@
+---
+description: Create a provision request via the MIQ API
+enabled: true
+name: provision_request_create
+runner_type: "python-script"
+entry_point: lib/provision_request_create.py
+parameters:
+  operation:
+    type: string
+    default: provision_request_create
+    immutable: true
+  ad_dns_domain:
+    type: string
+    description: "Windows domain name of the VM (Windows only)"
+    required: false
+  ad_password:
+    type: string
+    description: "The password to log into the Jumpbox or AD DC"
+    required: false
+    secret: true
+  ad_username:
+    type: string
+    description: "The username to log into the Jumpbox or AD DC"
+    required: false
+  cnames:
+    type: array
+    description: "Any additional cnames to create for the VM"
+    immutable: false
+    default: []
+  cpu_count:
+    type: string
+    description: "Number of CPUs on the VM"
+    required: false
+  datastore_id:
+    type: integer
+    description: "MIQ ID of the datastore to provision the VM to"
+    required: true
+  description:
+    type: string
+    description: "Description of the VM"
+    required: false
+    default: ""
+  dns_domain:
+    type: string
+    description: "DNS domain name of the VM (Windows only)"
+    required: false
+  domain_type:
+    type: string
+    description: "If provisioning Windows is the vm going to be on a domain or workgroup"
+    required: false
+  folder:
+    type: string
+    description: "Folder that the VM will be placed in"
+    required: false
+  host_id:
+    type: integer
+    description: "MIQ ID of the host to provision the VM to"
+    required: true
+  hostname:
+    type: string
+    description: "Hostname of the VM."
+    required: true
+  memory_mb:
+    type: string
+    description: "Amount of memory the VM has allocated, in Megabytes (MB)"
+    required: true
+  num_adapters:
+    type: string
+    description: "Number of network adapters to add to the VM"
+    required: true
+  owner_email:
+    type: string
+    description: "Email of the user that requested the VM"
+    required: true
+  owner_name:
+    type: string
+    description: "Whole name of user that ordered the VM"
+    required: false
+    default: "Unspecified"
+  password:
+    type: string
+    description: "Password to connect to the MIQ server"
+    required: true
+  server:
+    type: string
+    description: "MIQ server to connect to"
+    required: true
+  tags_list:
+    type: object
+    description: "List of tags to add to the VM"
+    required: false
+  template_guid:
+    type: string
+    description: "The template GUID from the Cloud Management Platform (needed for cloning template)"
+    required: true
+  username:
+    type: string
+    description: "Username to connect to the MIQ server"
+    required: true
+  vlan:
+    type: string
+    description: "Name of the VLAN to provision to. This should be the CloudForms name of the VLAN."
+    required: true
+  vm_dns_records:
+    type: array
+    description: "DNS records for each NIC"
+    required: true
