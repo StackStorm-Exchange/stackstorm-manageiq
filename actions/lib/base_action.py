@@ -2,12 +2,18 @@ from st2common.runners.base_action import Action
 from manageiq_client.api import ManageIQClient as MiqApi
 from manageiq_client.filters import Q
 
-import requests
-import urllib3
-
 # silence SSL warnings
-urllib3.disable_warnings()
-requests.packages.urllib3.disable_warnings()  # pylint: disable=no-member
+try:
+    import requests
+    requests.packages.urllib3.disable_warnings()  # pylint: disable=no-member
+except:
+    pass
+
+try:
+    import urllib3
+    urllib3.disable_warnings()
+except:
+    pass
 
 
 class BaseAction(Action):
