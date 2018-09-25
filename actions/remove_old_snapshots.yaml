@@ -9,15 +9,15 @@ parameters:
   server:
     type: string
     description: "Hostname or IP address of the ManageIQ Server"
-    immutable: false
+    required: true
   username:
     type: string
     description: "Username to login as on the ManageIQ Server"
-    immutable: false
+    required: true
   password:
     type: string
     description: "Password for username on the ManageIQ Server"
-    immutable: false
+    required: true
     secret: true
   name_ignore_regexes:
     type: array
