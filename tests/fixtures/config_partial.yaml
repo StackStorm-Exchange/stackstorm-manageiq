@@ -1,0 +1,11 @@
+---
+manageiq:
+  missing-username:
+    username: Administrator
+    password: PassworD!
+  missing-username:
+    server: manageiq.domian.tld
+    password: PassworD!
+  missing-password:
+    server: manageiq.domian.tld
+    username: Administrator

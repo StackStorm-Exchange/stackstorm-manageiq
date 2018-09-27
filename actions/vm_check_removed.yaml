@@ -1,0 +1,24 @@
+---
+description: Check if a given VM ID is found in the VMDB
+enabled: true
+name: vm_check_removed
+runner_type: "python-script"
+entry_point: lib/vm.py
+parameters:
+  operation:
+    type: string
+    default: check_removed
+    immutable: true
+  password:
+    type: string
+    required: true
+  server:
+    type: string
+    required: true
+  username:
+    type: string
+    required: true
+  id:
+    type: string
+    description: "ID of the VM in the Cloud Managemnt Platform"
+    required: true

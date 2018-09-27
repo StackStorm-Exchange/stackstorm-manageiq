@@ -1,0 +1,33 @@
+---
+description: "Finds a VM by name Finds a VM by name"
+enabled: true
+name: vm_find_by_name
+pack: manageiq
+runner_type: "python-script"
+entry_point: lib/vm.py
+parameters:
+  operation:
+    type: string
+    default: find_by_name
+    immutable: true
+  server:
+    type: string
+    description: "Hostname or IP address of the ManageIQ Server"
+    required: true
+  username:
+    type: string
+    description: "Username to login as on the ManageIQ Server"
+    required: true
+  password:
+    type: string
+    description: "Password for username on the ManageIQ Server"
+    required: true
+    secret: true
+  name:
+    type: string
+    description: "Name of the VM"
+    required: true
+  attributes:
+    type: array
+    description: "Additional attributes for the VM"
+    default: []
