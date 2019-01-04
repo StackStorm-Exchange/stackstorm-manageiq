@@ -1,12 +1,12 @@
 ---
 ref: manageiq
 name: manageiq
-description: StackStorm integration pack for working with ManageIQ/CloudForms
+description: ManageIQ/CloudForms
 keywords:
     - manageiq
     - cloudforms
     - provision
     - bestfit
-version: 0.1.0
+version: 0.1.1
 author: Encore Technologies
 email: code@encore.tech
