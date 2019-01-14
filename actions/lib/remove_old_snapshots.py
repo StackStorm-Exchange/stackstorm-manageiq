@@ -87,7 +87,7 @@ class RemoveOldSnapshots(Action):
                     created = snap['created_on'][:-1]
                     # advanced the created date by max_age_days and compare to
                     # the current time to determine if it is too old
-                    advanced = (dateutil.parser.parse(created) +
+                    advanced = (dateutil.parser.parse(created) +  # noqa: W504
                                 datetime.timedelta(days=max_age_days))
 
                     print "{}".format(advanced)
