@@ -6,7 +6,7 @@
 This pack provides an integration between StackStorm and [ManageIQ](http://manageiq.org/).
 The actions in this pack are designed to mimic the [ManageIQ REST API](http://manageiq.org/docs/api).
 
-# <a name="quickstart"></a> Quick Start
+## <a name="quickstart"></a> Quick Start
 
 **Steps**
 
@@ -22,15 +22,15 @@ The actions in this pack are designed to mimic the [ManageIQ REST API](http://ma
     st2 run manageiq.vm_list server='manageiq.domain.tld' username='admin' password='xxx'
     ```
 
-# <a name="configuration"></a> Configuration
+## <a name="configuration"></a> Configuration
 
 This pack does not require a configuration file. All connection parameters must be passed
 into each action individually. A configuration file to store connection information
-maybe be added in a future release.
+may be added in a future release.
 
-# <a name="actions"></a> Actions
+## <a name="actions"></a> Actions
 
-Actions in this pack are based off of the [ManageIQ REST API](http://manageiq.org/docs/api).
+Actions in this pack are based on the [ManageIQ REST API](http://manageiq.org/docs/api).
 
 | Action | Description |
 |--------|-------------|
@@ -62,7 +62,7 @@ Actions in this pack are based off of the [ManageIQ REST API](http://manageiq.or
 | manageiq.vm_retire_now | Retire a VM with a given ID |
 | manageiq.vm_scan | Initiates a SmartState Analysis scan asynchronously on a VM |
 
-# Future
+## Future
 
 - Create a config file for storing commonly used credentials
 - Auto-generate actions from the API (unfortunately there is no spec)
