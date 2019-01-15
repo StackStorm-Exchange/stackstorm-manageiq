@@ -1,4 +1,4 @@
-import base_action
+from lib import base_action
 
 
 class VmGetIDs(base_action.BaseAction):

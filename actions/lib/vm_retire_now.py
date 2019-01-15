@@ -1,4 +1,4 @@
-import base_action
+from lib import base_action
 
 
 class VmRetireNow(base_action.BaseAction):

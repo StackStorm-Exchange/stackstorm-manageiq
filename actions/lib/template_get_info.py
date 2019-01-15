@@ -1,4 +1,4 @@
-import base_action
+from lib import base_action
 
 
 class Temp(base_action.BaseAction):

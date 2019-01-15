@@ -1,4 +1,4 @@
-import base_action
+from lib import base_action
 
 
 class Hosts(base_action.BaseAction):
