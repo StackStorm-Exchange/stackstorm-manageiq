@@ -76,7 +76,7 @@ class BaseAction(Action):
         return obj
 
     def _create_object(self, client, collection_name, query_dict, payload):
-        self.logger.debug("creating {} '{}' .".format(collection_name, payload))
+        self.logger.debug("creating {}.".format(collection_name))
 
         # create a new object
         collection = getattr(client.collections, collection_name)
