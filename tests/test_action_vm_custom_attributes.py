@@ -4,7 +4,7 @@ from lib.vm_custom_attributes import VmCustomAttributes
 from st2common.runners.base_action import Action
 
 import mock
-import urllib
+from six.moves.urllib.parse import quote_plus
 
 
 class TestActionVmCustomAttributes(ManageIQBaseActionTestCase):
@@ -152,7 +152,7 @@ class TestActionVmCustomAttributes(ManageIQBaseActionTestCase):
         kwargs_dict = {'id': id,
                        'key': key}
         query_dict = action._get_query()
-        query_dict['filter[]'] = 'name={}'.format(urllib.quote_plus(key))
+        query_dict['filter[]'] = 'name={}'.format(quote_plus(key))
 
         resources_data = [{'name': key}]
 
