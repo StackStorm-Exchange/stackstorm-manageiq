@@ -38,7 +38,7 @@ class TestActionVmRetireNow(ManageIQBaseActionTestCase):
         # execute
         result = action.retire_now(mock_client, kwargs_dict)
 
-        print result
+        print(result)
 
         # asserts
         self.assertEquals(result, expected_result)
