@@ -1,5 +1,5 @@
 from manageiq_client.filters import Q
-from lib import base_action
+import base_action
 
 
 class Vm(base_action.BaseAction):

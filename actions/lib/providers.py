@@ -1,4 +1,4 @@
-from lib import base_action
+import base_action
 
 
 class Providers(base_action.BaseAction):
