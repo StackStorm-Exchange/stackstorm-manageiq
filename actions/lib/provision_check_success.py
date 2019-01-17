@@ -1,4 +1,4 @@
-from lib import base_action
+import base_action
 
 
 class ProvCheckSuccess(base_action.BaseAction):
