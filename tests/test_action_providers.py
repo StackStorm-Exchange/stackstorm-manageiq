@@ -21,7 +21,7 @@ class TestActionProviders(ManageIQBaseActionTestCase):
         self.assertEquals(result, {'expand': 'resources',
                                    'attributes': ('authentication_status')})
 
-    @mock.patch("lib.base_action.BaseAction._get_objects")
+    @mock.patch("lib.providers.base_action.BaseAction._get_objects")
     def test_credentials_test(self, mock__get_objects):
         action = self.get_action_instance({})
         client = "client"
@@ -48,7 +48,7 @@ class TestActionProviders(ManageIQBaseActionTestCase):
                                              collection_name="providers",
                                              query_dict=action._get_providers_query())
 
-    @mock.patch("lib.base_action.BaseAction._get_objects")
+    @mock.patch("lib.providers.base_action.BaseAction._get_objects")
     def test_credentials_test_error(self, mock__get_objects):
         action = self.get_action_instance({})
         client = "client"
@@ -69,3 +69,61 @@ class TestActionProviders(ManageIQBaseActionTestCase):
         mock__get_objects.assert_called_with(client=client,
                                              collection_name="providers",
                                              query_dict=action._get_providers_query())
+
+    @mock.patch("lib.providers.base_action.BaseAction._get_objects")
+    def test_refresh_all_providers(self, mock__get_objects):
+        action = self.get_action_instance({})
+        kwargs_dict = {'server': 'test.com',
+                       'provider_id': None}
+        test_result = "test result"
+        test_providers = [{'name': 'provider1.domain.tld',
+                           'id': '123456'},
+                          {'name': 'provider2.domain.tld',
+                           'id': '654321'}]
+
+        # mock
+        mock_client = mock.MagicMock()
+        mock_client.post.return_value = {'results': test_result}
+        mock__get_objects.return_value = test_providers
+
+        # execute
+        result = action.refresh(mock_client, kwargs_dict)
+
+        # assert
+        self.assertEquals(result, test_result)
+        mock__get_objects.assert_called_with(client=mock_client,
+                                             collection_name="providers",
+                                             query_dict={'expand': 'resources'})
+
+        mock_client.post.assert_called_with(url="https://test.com/api/providers",
+                                            action="refresh",
+                                            resources=test_providers)
+
+    @mock.patch("lib.providers.base_action.BaseAction._get_objects")
+    def test_refresh_one_provider(self, mock__get_objects):
+        action = self.get_action_instance({})
+        kwargs_dict = {'server': 'test.com',
+                       'provider_id': '654321'}
+        test_result = "test result"
+        test_providers = [{'name': 'provider1.domain.tld',
+                           'id': '123456'},
+                          {'name': 'provider2.domain.tld',
+                           'id': '654321'}]
+
+        # mock
+        mock_client = mock.MagicMock()
+        mock_client.post.return_value = {'results': test_result}
+        mock__get_objects.return_value = test_providers
+
+        # execute
+        result = action.refresh(mock_client, kwargs_dict)
+        # assert
+        self.assertEquals(result, test_result)
+        mock__get_objects.assert_called_with(client=mock_client,
+                                             collection_name="providers",
+                                             query_dict={'expand': 'resources'})
+
+        mock_client.post.assert_called_with(url="https://test.com/api/providers",
+                                            action="refresh",
+                                            resources=[{'name': 'provider2.domain.tld',
+                                                        'id': '654321'}])
