@@ -31,7 +31,7 @@ class TestActionProvCheck(ManageIQBaseActionTestCase):
 
         self.assertEquals(result, 'error')
 
-    @mock.patch("lib.base_action.BaseAction._data_from_entity_list")
+    @mock.patch("lib.provision_check_success.base_action.BaseAction._data_from_entity_list")
     def test_provision_check_success(self, mock_task_list):
         action = self.get_action_instance({})
         request_id = '100008'
@@ -53,7 +53,7 @@ class TestActionProvCheck(ManageIQBaseActionTestCase):
         mock_client.collections.provision_requests.assert_called_with(request_id)
         mock_task_list.assert_called_with('Test Tasks')
 
-    @mock.patch("lib.base_action.BaseAction._data_from_entity_list")
+    @mock.patch("lib.provision_check_success.base_action.BaseAction._data_from_entity_list")
     def test_provision_check_success_error(self, mock_task_list):
         action = self.get_action_instance({})
         request_id = '100008'

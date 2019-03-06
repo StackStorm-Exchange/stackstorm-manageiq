@@ -22,7 +22,7 @@ class TestActionHosts(ManageIQBaseActionTestCase):
                                    'attributes': ('power_status,'
                                                   'authentication_status')})
 
-    @mock.patch("lib.base_action.BaseAction._get_objects")
+    @mock.patch("lib.hosts.base_action.BaseAction._get_objects")
     def test_credentials_test(self, mock__get_objects):
         action = self.get_action_instance({})
         client = "client"
@@ -51,7 +51,7 @@ class TestActionHosts(ManageIQBaseActionTestCase):
                                              collection_name="hosts",
                                              query_dict=action._get_hosts_query())
 
-    @mock.patch("lib.base_action.BaseAction._get_objects")
+    @mock.patch("lib.hosts.base_action.BaseAction._get_objects")
     def test_credentials_test_maintenance(self, mock__get_objects):
         action = self.get_action_instance({})
         client = "client"
@@ -80,7 +80,7 @@ class TestActionHosts(ManageIQBaseActionTestCase):
                                              collection_name="hosts",
                                              query_dict=action._get_hosts_query())
 
-    @mock.patch("lib.base_action.BaseAction._get_objects")
+    @mock.patch("lib.hosts.base_action.BaseAction._get_objects")
     def test_credentials_test_powered_off(self, mock__get_objects):
         action = self.get_action_instance({})
         client = "client"
@@ -109,7 +109,7 @@ class TestActionHosts(ManageIQBaseActionTestCase):
                                              collection_name="hosts",
                                              query_dict=action._get_hosts_query())
 
-    @mock.patch("lib.base_action.BaseAction._get_objects")
+    @mock.patch("lib.hosts.base_action.BaseAction._get_objects")
     def test_credentials_test_error(self, mock__get_objects):
         action = self.get_action_instance({})
         client = "client"
