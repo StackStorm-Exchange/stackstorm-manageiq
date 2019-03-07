@@ -90,7 +90,7 @@ class RemoveOldSnapshots(Action):
                     advanced = (dateutil.parser.parse(created) +  # noqa: W504
                                 datetime.timedelta(days=max_age_days))
 
-                    print "{}".format(advanced)
+                    print("{}".format(advanced))
                     # Snapshots older than the max age will be deleted
                     if advanced < date_now:
                         deleted_snapshots.append("{0}: {1}".format(vm['name'], snap['name']))
