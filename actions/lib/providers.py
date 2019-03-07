@@ -48,8 +48,8 @@ class Providers(base_action.BaseAction):
          all providers will be refreshed.
         :param client: ManageIQClient class object from manageiq_client.api
         :param kwargs_dict: Inputs from the Stackstorm action
-        :returns: a dictionary of the results returned from ManageIQ
-        :rtype: dict
+        :returns: a list of dictionary results returned from ManageIQ
+        :rtype: list
         """
         providers = self._get_objects(client=client,
                                       collection_name="providers",
@@ -58,7 +58,6 @@ class Providers(base_action.BaseAction):
         resources = []
         # If a provider ID was specified, only refresh that one
         if kwargs_dict['provider_id']:
-            print("Provider ID Given")
             for prov in providers:
                 if str(prov['id']) == kwargs_dict['provider_id']:
                     resources.append(prov)
@@ -66,8 +65,11 @@ class Providers(base_action.BaseAction):
         else:
             resources = providers
 
-        endpoint = "https://" + kwargs_dict['server'] + "/api/providers"
+        result = client.collections.providers.action.refresh(*resources)
 
-        result = client.post(url=endpoint, action="refresh", resources=resources)
+        # return the data objects from each of the action results
+        results = []
+        for idx, res in enumerate(result):
+            results.append(result[idx]['_data'])
 
-        return result['results']
+        return results

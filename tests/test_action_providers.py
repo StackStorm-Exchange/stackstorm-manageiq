@@ -75,55 +75,56 @@ class TestActionProviders(ManageIQBaseActionTestCase):
         action = self.get_action_instance({})
         kwargs_dict = {'server': 'test.com',
                        'provider_id': None}
-        test_result = "test result"
         test_providers = [{'name': 'provider1.domain.tld',
                            'id': '123456'},
                           {'name': 'provider2.domain.tld',
                            'id': '654321'}]
+        refresh_result = [{'_data': 'test data 1'},
+                          {'_data': 'test data 2'}]
+        expected_result = ['test data 1', 'test data 2']
 
         # mock
-        mock_client = mock.MagicMock()
-        mock_client.post.return_value = {'results': test_result}
         mock__get_objects.return_value = test_providers
+        mock_client = mock.MagicMock()
+        mock_client.collections.providers.action.refresh.return_value = refresh_result
 
         # execute
         result = action.refresh(mock_client, kwargs_dict)
 
         # assert
-        self.assertEquals(result, test_result)
+        self.assertEquals(result, expected_result)
         mock__get_objects.assert_called_with(client=mock_client,
                                              collection_name="providers",
                                              query_dict={'expand': 'resources'})
 
-        mock_client.post.assert_called_with(url="https://test.com/api/providers",
-                                            action="refresh",
-                                            resources=test_providers)
+        mock_client.collections.providers.action.refresh.assert_called_with(
+            *test_providers)
 
     @mock.patch("lib.providers.base_action.BaseAction._get_objects")
     def test_refresh_one_provider(self, mock__get_objects):
         action = self.get_action_instance({})
         kwargs_dict = {'server': 'test.com',
                        'provider_id': '654321'}
-        test_result = "test result"
         test_providers = [{'name': 'provider1.domain.tld',
                            'id': '123456'},
                           {'name': 'provider2.domain.tld',
                            'id': '654321'}]
+        refresh_result = [{'_data': 'test data 1'}]
+        expected_result = ['test data 1']
 
         # mock
-        mock_client = mock.MagicMock()
-        mock_client.post.return_value = {'results': test_result}
         mock__get_objects.return_value = test_providers
+        mock_client = mock.MagicMock()
+        mock_client.collections.providers.action.refresh.return_value = refresh_result
 
         # execute
         result = action.refresh(mock_client, kwargs_dict)
         # assert
-        self.assertEquals(result, test_result)
+        self.assertEquals(result, expected_result)
         mock__get_objects.assert_called_with(client=mock_client,
                                              collection_name="providers",
                                              query_dict={'expand': 'resources'})
 
-        mock_client.post.assert_called_with(url="https://test.com/api/providers",
-                                            action="refresh",
-                                            resources=[{'name': 'provider2.domain.tld',
-                                                        'id': '654321'}])
+        mock_client.collections.providers.action.refresh.assert_called_with(
+            {'name': 'provider2.domain.tld',
+             'id': '654321'})
