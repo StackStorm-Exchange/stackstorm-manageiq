@@ -67,9 +67,5 @@ class Providers(base_action.BaseAction):
 
         result = client.collections.providers.action.refresh(*resources)
 
-        # return the data objects from each of the action results
-        results = []
-        for idx, res in enumerate(result):
-            results.append(result[idx]['_data'])
-
-        return results
+        # return the data objects from the action results
+        return self._data_from_entity_list(result)
