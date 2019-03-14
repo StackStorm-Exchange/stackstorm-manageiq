@@ -20,7 +20,7 @@ class BestFit(base_action.BaseAction):
         datastoreID = None
         first_disk = disks['all_disks'][0]
         datastore_name = first_disk['datastore']
-        if datastore_name is not "automatic":
+        if datastore_name != "automatic":
             datastoreName, datastoreID = self._find_storage(client, datastore_name)
 
         return (datastoreName, datastoreID)

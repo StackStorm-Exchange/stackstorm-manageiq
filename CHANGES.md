@@ -1,5 +1,12 @@
 # Change Log
 
+## v0.1.3
+
+- Added action to refresh a given or every provider.
+  Added action to check the status of a task.
+  Fixed circle ci python 3 errors.
+  Contributed by John Schoewe (Encore Technologies)
+
 ## v0.1.2
 
 - Removed payload from debug logs when creating objects.

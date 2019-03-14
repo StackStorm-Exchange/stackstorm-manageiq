@@ -86,7 +86,7 @@ class TestActionTags(ManageIQBaseActionTestCase):
         with self.assertRaises(RuntimeError):
             action._validate_tag(custom_attributes, with_descriptions=True)
 
-    @mock.patch("lib.base_action.BaseAction._get_or_create_object")
+    @mock.patch("lib.tags.base_action.BaseAction._get_or_create_object")
     def test__get_or_create_category(self, mock_get_or_create):
         action = self.get_action_instance({})
         client = "client"
@@ -110,7 +110,7 @@ class TestActionTags(ManageIQBaseActionTestCase):
                                               query_dict=action._get_categories_query(),
                                               payload=expected_payload)
 
-    @mock.patch("lib.base_action.BaseAction._get_object")
+    @mock.patch("lib.tags.base_action.BaseAction._get_object")
     def test__get_category(self, mock_get):
         action = self.get_action_instance({})
         client = "client"
@@ -128,7 +128,7 @@ class TestActionTags(ManageIQBaseActionTestCase):
                                     name=name,
                                     query_dict=action._get_categories_query())
 
-    @mock.patch("lib.base_action.BaseAction._get_or_create_object")
+    @mock.patch("lib.tags.base_action.BaseAction._get_or_create_object")
     def test__get_or_create_tag(self, mock_get_or_create):
         action = self.get_action_instance({})
         client = "client"
@@ -155,7 +155,7 @@ class TestActionTags(ManageIQBaseActionTestCase):
                                               query_dict=action._get_tags_query(),
                                               payload=expected_payload)
 
-    @mock.patch("lib.base_action.BaseAction._get_object")
+    @mock.patch("lib.tags.base_action.BaseAction._get_object")
     def test__get_tag(self, mock_get):
         action = self.get_action_instance({})
         client = "client"

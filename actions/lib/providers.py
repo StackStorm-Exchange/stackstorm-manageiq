@@ -42,3 +42,30 @@ class Providers(base_action.BaseAction):
                             'valid': valid})
 
         return (all_valid, results)
+
+    def refresh(self, client, kwargs_dict):
+        """Refresh the specified provider in ManageIQ. If no ID is given then
+         all providers will be refreshed.
+        :param client: ManageIQClient class object from manageiq_client.api
+        :param kwargs_dict: Inputs from the Stackstorm action
+        :returns: a list of dictionary results returned from ManageIQ
+        :rtype: list
+        """
+        providers = self._get_objects(client=client,
+                                      collection_name="providers",
+                                      query_dict={'expand': 'resources'})
+
+        resources = []
+        # If a provider ID was specified, only refresh that one
+        if kwargs_dict['provider_id']:
+            for prov in providers:
+                if str(prov['id']) == kwargs_dict['provider_id']:
+                    resources.append(prov)
+                    break
+        else:
+            resources = providers
+
+        result = client.collections.providers.action.refresh(*resources)
+
+        # return the data objects from the action results
+        return self._data_from_entity_list(result)

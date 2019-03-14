@@ -83,7 +83,7 @@ class TestActionVm(ManageIQBaseActionTestCase):
         # asserts
         self.assertEquals(results, expected_results)
 
-    @patch("lib.base_action.BaseAction._create_object")
+    @patch("lib.provision_request_create.base_action.BaseAction._create_object")
     def test_provision_request_create(self, mock_create_object):
         action = self.get_action_instance({})
 
