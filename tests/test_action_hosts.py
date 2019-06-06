@@ -19,8 +19,7 @@ class TestActionHosts(ManageIQBaseActionTestCase):
         action = self.get_action_instance({})
         result = action._get_hosts_query()
         self.assertEquals(result, {'expand': 'resources',
-                                   'attributes': ('power_status,'
-                                                  'authentication_status')})
+                                   'attributes': ('authentication_status')})
 
     @mock.patch("lib.hosts.base_action.BaseAction._get_objects")
     def test_credentials_test(self, mock__get_objects):

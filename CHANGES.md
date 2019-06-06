@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.1.4
+
+- Fixed error with CF 4.7 in hosts.py credential_check action
+  Contributed by John Schoewe (Encore Technologies)
+
 ## v0.1.3
 
 - Added action to refresh a given or every provider.

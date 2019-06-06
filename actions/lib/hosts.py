@@ -12,8 +12,7 @@ class Hosts(base_action.BaseAction):
 
     def _get_hosts_query(self):
         return {'expand': 'resources',
-                'attributes': self._attributes_str(['power_status',
-                                                    'authentication_status'])}
+                'attributes': self._attributes_str(['authentication_status'])}
 
     def credentials_test(self, client, kwargs_dict):
         """Tests if the stored credentials is ManageIQ are valid for all hosts (hypervisors)
