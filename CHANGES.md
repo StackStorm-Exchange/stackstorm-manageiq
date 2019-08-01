@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.1.5
+
+- Fixed issue with wait-for module where newest version only supports python 3
+  Contributed by Bradley Bishop (Encore Technologies)
+
 ## v0.1.4
 
 - Fixed error with CF 4.7 in hosts.py credential_check action
