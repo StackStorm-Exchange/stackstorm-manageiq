@@ -1,0 +1,21 @@
+manageiq-client>=0.3.0
+
+# Pin parsedatetime to < 2.6 avoid this issue on Python 2.7:
+#
+#   https://github.com/bear/parsedatetime/issues/245
+#   https://github.com/bear/parsedatetime/issues/246
+#   https://github.com/bear/parsedatetime/issues/251
+#
+# Waiting on #247 for a proper fix:
+#
+#   https://github.com/bear/parsedatetime/pull/247  - proper fix
+#   https://github.com/bear/parsedatetime/pull/248  - bad fix
+#
+parsedatetime<2.6
+
+# Can also use environment markers to install different versions for Python 2
+# and Python 3:
+#parsedatetime<2.6; python_version < "3"
+#parsedatetime; python_version >= "3"
+
+wait-for<1.1  # Version 1.1 dropped Python 2.7 support
