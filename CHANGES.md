@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.1.6
+
+- Pinned parsedatetime to <2.6 to fix tests on Python 2.7
+- Updated requirements file handling and Makefile
+
 ## v0.1.5
 
 - Fixed issue with wait-for module where newest version only supports python 3
