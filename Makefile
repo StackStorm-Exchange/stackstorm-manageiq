@@ -61,6 +61,21 @@ list:
 	fi;
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | sort | uniq | xargs
 
+virtualenv: venv
+	virtualenv venv || python3 -m venv venv
+
+.PHONY: pip-tools
+pip-tools:
+	. venv/bin/activate; pip install pip-tools
+
+.PHONY: requirements
+requirements: pip-tools
+	. venv/bin/activate; pip-compile requirements.in > requirements.txt
+
+.PHONY: requirements-tests
+requirements-tests: pip-tools
+	. venv/bin/activate; pip-compile requirements-tests.in > requirements-tests.txt
+
 # forward all make targets not found in this makefile to the ci makefile to do
 # the actual work (by calling the invoke-ci-makefile target)
 # http://stackoverflow.org/wiki/Last-Resort_Makefile_Targets
