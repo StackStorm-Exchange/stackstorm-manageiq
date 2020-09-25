@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.2.0
+
+- Converted `manageiq.credentials_test` workflow to Orquesta
+  Contributed by Nick Maludy (Encore Technologies)
+
 ## v0.1.6
 
 - Pinned parsedatetime to <2.6 to fix tests on Python 2.7
